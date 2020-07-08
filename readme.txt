@@ -1,4 +1,4 @@
-This program lets a user select one of their own public Spotify playlists to be "reshuffled" according to certain parameters. The purpose of this is to replace Spotify's built-in shuffle feature, which I am personally not satisfied with.
+This program lets a user select one of their own public Spotify playlists to be "reshuffled" according to certain parameters. The purpose of this is to replace Spotify's built-in shuffle feature, which I am personally not satisfied with. This does not literally replace the feature, but it reorders a playlist which the user can then play from the top without using the Spotify's shuffle option.
 
 As of right now, the available shuffle techniques are:
 - Pure random
