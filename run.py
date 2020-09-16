@@ -103,7 +103,7 @@ pl_track_items[
 # ID of playlist to shuffle
 # spotify:playlist:0qfJQD123jdsapEus1MjJM
 
-pl_id = '0qfJQD123jdsapEus1MjJM'
+pl_id = '6CtLScuXslFGoK1PN0oRqN'
 
 pl_track_items = get_pl_track_items(pl_id)
 
