@@ -1,0 +1,7 @@
+<a href="{% url 'index' %}"> < Back </a>
+<h2>Choose a playlist</h2>
+<ul>
+	{% for pl in playlists %}
+	<li><a href="{% url 'view-playlist' pl.id %}">{{ pl.name }}</a></li>
+	{% endfor %}
+</ul>

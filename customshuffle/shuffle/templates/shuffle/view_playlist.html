@@ -1,0 +1,46 @@
+<a href="{% url 'playlists' %}"> < Back </a>
+<h2>{{ pl_name }}</h2>
+
+<form action="{% url 'submit' pl_id %}" method='post'>
+	{% csrf_token %}
+	<input type="radio" id="custom_w" name="method" value="custom_w" checked>
+	<label for="custom_w">Custom Width</label><br>
+	<input type="radio" id="custom_ch" name="method" value="custom_ch">
+	<label for="custom_ch">Custom Chunks</label><br>
+	<label for="number">n (width or # of chunks)</label><br>
+	<input type="text" id="number" name="n" value="10"><br>
+	<input type="submit" value="Shuffle">
+</form>
+
+<table>
+	<tr>
+		<th>Title</th>
+		<th>Artist</th>
+		<th>Album</th>
+	</tr>
+	{% for track in tracks %}
+	<tr>
+		<td>{{ track.name }}</td>
+		<td>{{ track.artist }}</td>
+		<td>{{ track.album }}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+
+
+<style>
+	table {
+		font-family: arial, sans-serif;
+		border-collapse: collapse;
+		width: 100%;
+	}
+	td,th {
+		text-align: left;
+		border: 1px solid #dddddd;
+		padding: 8px;
+	}
+	tr:nth-child(even) {
+  		background-color: #dddddd;
+	}
+</style>
