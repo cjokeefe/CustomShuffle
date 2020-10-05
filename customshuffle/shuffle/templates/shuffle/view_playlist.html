@@ -6,7 +6,9 @@
 
 <form action="{% url 'submit' pl_id %}" method='post'>
 	{% csrf_token %}
-	<input type="radio" id="custom_w" name="method" value="custom_w" checked>
+	<input type="radio" id="random" name="method" value="random" checked>
+	<label for="random">Pure Random</label><br>
+	<input type="radio" id="custom_w" name="method" value="custom_w">
 	<label for="custom_w">Custom Width</label><br>
 	<input type="radio" id="custom_ch" name="method" value="custom_ch">
 	<label for="custom_ch">Custom Chunks</label><br>

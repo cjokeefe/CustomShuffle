@@ -63,7 +63,9 @@ def customshuffle(username, pl_id, method, n, spotify):
 	# Get the new song order - returns list of track ID's
 	if(method == 'custom_w'):
 		new_order = Custom_w(pl_track_items, n)
-	else:
+	elif(method == 'custom_ch'):
 		new_order = Custom_ch(pl_track_items, n)
+	else:
+		new_order = PureRandom(pl_track_items)
 
 	replace_tracks(username, pl_id, new_order, spotify)

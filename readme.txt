@@ -7,6 +7,6 @@ As of right now, the available shuffle techniques are:
 This program will not run without the Client ID and Client Secret until it's deployed to the web.
 
 To-do:
-User interface
+Make the frontend pretty
 More shuffling techniques
 Deploy to web
