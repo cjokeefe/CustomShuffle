@@ -5,3 +5,8 @@
 	<li><a href="{% url 'view-playlist' pl.id %}">{{ pl.name }}</a></li>
 	{% endfor %}
 </ul>
+{% if offset != 0 %}
+	<a href="{% url 'playlists' 0 %}"><< First</a>
+	<a href="{% url 'playlists' prev %}">< Prev</a>
+{% endif %}
+<a href="{% url 'playlists' next %}">Next ></a>

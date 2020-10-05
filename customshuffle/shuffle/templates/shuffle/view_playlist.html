@@ -1,5 +1,8 @@
-<a href="{% url 'playlists' %}"> < Back </a>
+<a href="{% url 'playlists' 0 %}"> < Back </a>
 <h2>{{ pl_name }}</h2>
+{% if pl_img %}
+	<img src="{{ pl_img }}">
+{% endif %}
 
 <form action="{% url 'submit' pl_id %}" method='post'>
 	{% csrf_token %}
@@ -14,12 +17,14 @@
 
 <table>
 	<tr>
+		<th>#</th>
 		<th>Title</th>
 		<th>Artist</th>
 		<th>Album</th>
 	</tr>
 	{% for track in tracks %}
 	<tr>
+		<td>{{ track.trackNum }}</td>
 		<td>{{ track.name }}</td>
 		<td>{{ track.artist }}</td>
 		<td>{{ track.album }}</td>
