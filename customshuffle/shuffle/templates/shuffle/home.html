@@ -1,13 +1,20 @@
-<h2>Welcome {{ name }}</h2>
-<h2>Top 5 tracks</h2>
-<ul>
-	{% for track in topTracks %}
-		<li>{{ track }}</li>
-	{% endfor %}
-</ul>
+{% extends "shuffle/base.html" %}
+{% block content %}
+<div class="container">
+	<div class="border-bottom">
+		<h1>Welcome {{ name }}</h1>
+	</div>
+	<h2>Top 5 tracks</h2>
+	<ul>
+		{% for track in topTracks %}
+			<li>{{ track.title }} - {{ track.artist }}</li>
+		{% endfor %}
+	</ul>
 
-<h2>What do you want to do?</h2>
-<ul>
-	<li><a href="{% url 'playlists' 0 %}">Shuffle</a></li>
-	<li>Stats</li>
-</ul>
+	<h2>What do you want to do?</h2>
+	<a class="btn btn-primary mr-4" id="shuffle-btn" href="{% url 'playlists' 0 %}">Shuffle</a>
+	<button class="btn btn-primary" id="stats-btn" disabled>Stats</button>
+
+</div>
+
+{% endblock %}

@@ -1,53 +1,73 @@
-<a href="{% url 'playlists' 0 %}"> < Back </a>
-<h2>{{ pl_name }}</h2>
-{% if pl_img %}
-	<img src="{{ pl_img }}">
-{% endif %}
+{% extends "shuffle/base.html" %}
+{% block content %}
 
-<form action="{% url 'submit' pl_id %}" method='post'>
-	{% csrf_token %}
-	<input type="radio" id="random" name="method" value="random" checked>
-	<label for="random">Pure Random</label><br>
-	<input type="radio" id="custom_w" name="method" value="custom_w">
-	<label for="custom_w">Custom Width</label><br>
-	<input type="radio" id="custom_ch" name="method" value="custom_ch">
-	<label for="custom_ch">Custom Chunks</label><br>
-	<label for="number">n (width or # of chunks)</label><br>
-	<input type="text" id="number" name="n" value="10"><br>
-	<input type="submit" value="Shuffle">
-</form>
+<div class="container">
 
-<table>
-	<tr>
-		<th>#</th>
-		<th>Title</th>
-		<th>Artist</th>
-		<th>Album</th>
-	</tr>
-	{% for track in tracks %}
-	<tr>
-		<td>{{ track.trackNum }}</td>
-		<td>{{ track.name }}</td>
-		<td>{{ track.artist }}</td>
-		<td>{{ track.album }}</td>
-	</tr>
-	{% endfor %}
-</table>
+	<a class="btn btn-outline-primary mb-4 mt-2" id="nav-btn" href="{% url 'playlists' 0 %}"> < Back </a>
+	<h2>{{ pl_name }}</h2>
+	{% if pl_img %}
+		<img class ="shadow" src="{{ pl_img }}">
+	{% endif %}
+
+	<!--
+	<form action="{% url 'submit' pl_id %}" method='post'>
+		{% csrf_token %}
+		<input type="radio" id="random" name="method" value="random" checked>
+		<label for="random">Pure Random</label><br>
+		<input type="radio" id="custom_w" name="method" value="custom_w">
+		<label for="custom_w">Custom Width</label><br>
+		<input type="radio" id="custom_ch" name="method" value="custom_ch">
+		<label for="custom_ch">Custom Chunks</label><br>
+		<label for="number">n (width or # of chunks)</label><br>
+		<input type="text" id="number" name="n" value="10"><br>
+		<input type="submit" value="Shuffle">
+	</form>
+	-->
+
+	<form action="{% url 'submit' pl_id %}" method='post'>
+		{% csrf_token %}
+		<div class="btn-group btn-group-toggle mt-4 mb-2" data-toggle="buttons">
+			<label class="btn btn-secondary active">
+				<input type="radio" id="random" name="method" value="random" checked> Pure Random 
+			</label>
+
+			<label class="btn btn-secondary">
+				<input type="radio" id="custom_w" name="method" value="custom_w"> Custom Width
+			</label>
+			
+			<label class="btn btn-secondary">
+				<input type="radio" id="custom_ch" name="method" value="custom_ch"> Custom Chunks
+			</label>
+
+		</div>
+		<br>
+		<label for="number">n (width or # of chunks):</label>
+		<input type="text" id="number" name="n" value="10"><br>
+		<input class="btn btn-primary mb-2" id="shuffle-btn" type="submit" value="Shuffle">
+	</form>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Title</th>
+				<th scope="col">Artist</th>
+				<th scope="col">Album</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for track in tracks %}
+			<tr>
+				<td>{{ track.trackNum }}</td>
+				<td>{{ track.name }}</td>
+				<td>{{ track.artist }}</td>
+				<td>{{ track.album }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+</div>
 
 
-
-<style>
-	table {
-		font-family: arial, sans-serif;
-		border-collapse: collapse;
-		width: 100%;
-	}
-	td,th {
-		text-align: left;
-		border: 1px solid #dddddd;
-		padding: 8px;
-	}
-	tr:nth-child(even) {
-  		background-color: #dddddd;
-	}
-</style>
+{% endblock %}

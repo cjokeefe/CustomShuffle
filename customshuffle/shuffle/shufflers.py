@@ -52,7 +52,8 @@ def Custom_ch(pl_track_items, n_chunks):
 def Custom_w(pl_track_items, width):
 	result = []
 	length = len(pl_track_items)
-	n_chunks = (length//width) + 1
+	remainder = length%width
+	n_chunks = (length//width) + int(bool(remainder))
 
 	# Get dict of {artist_id:[track_ids]}
 	artist_tracks = TracksByArtists(pl_track_items)
@@ -75,6 +76,7 @@ def Custom_w(pl_track_items, width):
 		for track in artist_tracks[artist]:
 			result[curr_chunk].append(track)
 			curr_chunk = (curr_chunk+1)%n_chunks
+
 
 	for chunk in result:
 		random.shuffle(chunk)

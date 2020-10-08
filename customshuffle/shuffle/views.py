@@ -28,7 +28,9 @@ def index(request):
 
 	if not auth_manager.get_cached_token():
 		auth_url=auth_manager.get_authorize_url()
-		return HttpResponse(f'<h2><a href="{auth_url}">Sign in</a></h2>')
+		context = {'auth_url': auth_url}
+		#return HttpResponse(f'<h2><a href="{auth_url}">Sign in</a></h2>')
+		return render(request, 'shuffle/login.html', context)
 
 	spotify = spotipy.Spotify(auth_manager=auth_manager)
 
@@ -41,7 +43,9 @@ def index(request):
 	topTrackList = []
 
 	for track in topTracks:
-		topTrackList.append(track['name'])
+		topTrackList.append(
+			{'title': track['name'], 'artist': track['artists'][0]['name']}
+		)
 
 	context = {
 		'name': name,
@@ -91,6 +95,7 @@ def ShufflePlaylist(request, pl_id):
 	userID = spotify.me()['id']
 	method = request.POST.get('method')
 	n = request.POST.get('n')
+	print(method, n)
 	try:
 		n = int(n)
 	except ValueError:

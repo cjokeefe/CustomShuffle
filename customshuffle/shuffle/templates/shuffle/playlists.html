@@ -1,12 +1,42 @@
-<a href="{% url 'index' %}"> < Back </a>
-<h2>Choose a playlist</h2>
-<ul>
-	{% for pl in playlists %}
-	<li><a href="{% url 'view-playlist' pl.id %}">{{ pl.name }}</a></li>
-	{% endfor %}
-</ul>
-{% if offset != 0 %}
-	<a href="{% url 'playlists' 0 %}"><< First</a>
-	<a href="{% url 'playlists' prev %}">< Prev</a>
-{% endif %}
-<a href="{% url 'playlists' next %}">Next ></a>
+{% extends "shuffle/base.html" %}
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md">
+
+			<a class="btn btn-outline-primary mb-4 mt-2" id="nav-btn" href="{% url 'index' %}"> < Back </a>
+
+			<h2>Choose a playlist</h2>
+
+			<div>
+				{% if offset != 0 %}
+					<a class="btn btn-outline-primary btn-sm mb-2 mr-2" id="nav-btn" href="{% url 'playlists' 0 %}"><< First</a>
+					<a class="btn btn-outline-primary btn-sm mb-2" id="nav-btn" href="{% url 'playlists' prev %}">< Prev</a>
+				{% endif %}
+				<a class="btn btn-outline-primary btn-sm mb-2" id="nav-btn" href="{% url 'playlists' next %}">Next ></a>
+			</div>
+
+			<div class="list-group">
+				{% for pl in playlists %}
+					<a class="list-group-item list-group-item-action" href="{% url 'view-playlist' pl.id %}">{{ pl.name }}</a></li>
+				{% endfor %}
+			</div>
+
+			<div class="mb-4">
+				{% if offset != 0 %}
+					<a class="btn btn-outline-primary btn-sm mt-2 mr-2" id="nav-btn" href="{% url 'playlists' 0 %}"><< First</a>
+					<a class="btn btn-outline-primary btn-sm mt-2" id="nav-btn" href="{% url 'playlists' prev %}">< Prev</a>
+				{% endif %}
+				<a class="btn btn-outline-primary btn-sm mt-2" id="nav-btn" href="{% url 'playlists' next %}">Next ></a>
+			</div>
+
+		</div>
+
+		<div class="col-md">
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}
